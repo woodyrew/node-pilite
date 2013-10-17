@@ -7,7 +7,9 @@ Install the module with: `npm install pilite`
 
 ```javascript
 var pilite = require('pilite');
-pilite.awesome(); // "awesome"
+pilite.connect(function() {
+	// Run piLite commands
+}
 ```
 
 ## Documentation

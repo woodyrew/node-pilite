@@ -1,6 +1,6 @@
 'use strict';
 
-var pilite = require('../lib/pilite.js');
+var pilite = require('../lib/pilite.js').PiLite;
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -22,15 +22,66 @@ var pilite = require('../lib/pilite.js');
     test.ifError(value)
 */
 
-exports['awesome'] = {
-  setUp: function(done) {
-    // setup here
-    done();
-  },
-  'no args': function(test) {
+exports['test'] = {
+  // setUp: function(done) {
+  //   // setup here
+  //   pilite.connect();
+  //   done();   
+  // },
+  'correctly returns string for setting pilite speed': function(test) {
     test.expect(1);
-    // tests here
-    test.equal(pilite.awesome(), 'awesome', 'should be awesome.');
+    test.equal(pilite.setSpeed(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
     test.done();
   },
+  'correctly accepts 126 character string in ones and zeros to represent each LED state (on or off)': function(test) {
+    var correct_command = '000000000000000000000111000011111110011111110111111111111101111111101111011000110011000110000000000000000000000000000000000000',
+      expected = "$$$F" + correct_command + "\r"
+    test.expect(4);
+    test.throws(function() {pilite.frameBuffer('1')}, Error, 'Should only allow a string of exactly 126 characters');
+    test.throws(function() {pilite.frameBuffer(correct_command + '1')}, Error, 'Should only allow a string of exactly 126 characters');
+    test.throws(function() {pilite.frameBuffer(correct_command.pop().push('a'))}, Error, 'Should only allow zeros and ones');
+    test.equal(pilite.frameBuffer(correct_command), expected, 'should be ' + expected + '.');
+    test.done();
+  },
+  'correctly accepts values for a bar graph': function(test) {
+    var oneForteenth = 100 / 14,
+      percent, expected;
+    test.expect(18);
+    for (var i = 1; i <= 14; i++) {
+      percent = (100 - (oneForteenth * i));
+      expected = '$$$B' + i + ',' + Math.round(percent);
+      test.equal(pilite.barGraph(i, percent), expected + "\r", 'should be ' + expected + '.');
+    };
+    test.throws(function() {pilite.barGraph(0, 50)}, Error, 'Should only allow columns 1-14');
+    test.throws(function() {pilite.barGraph(15, 50)}, Error, 'Should only allow columns 1-14');
+    test.throws(function() {pilite.barGraph(1, -1)}, Error, 'Should only allow percentages 0-100');
+    test.throws(function() {pilite.barGraph(1, 101)}, Error, 'Should only allow percentages 0-100');
+    test.done();
+  }/*,
+  'correctly returns string for setting pilite speed': function(test) {
+    test.expect(1);
+    test.equal(pilite.chart(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
+    test.done();
+  },
+  'correctly returns string for setting pilite speed': function(test) {
+    test.expect(1);
+    test.equal(pilite.vuMeter(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
+    test.done();
+  },
+  'correctly returns string for setting pilite speed': function(test) {
+    test.expect(1);
+    test.equal(pilite.pixel(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
+    test.done();
+  },
+  'correctly returns string for setting pilite speed': function(test) {
+    test.expect(1);
+    test.equal(pilite.colBuffer(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
+    test.done();
+  },
+  'correctly returns string for setting pilite speed': function(test) {
+    test.expect(1);
+    test.equal(pilite.randomPixel(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
+    test.done();
+  }*/
+
 };
