@@ -58,7 +58,7 @@ exports['test'] = {
     test.throws(function() {pilite.barGraph(1, 101)}, Error, 'Should only allow percentages 0-100');
     test.done();
   },
-  'correctly accepts values for a horizontal chart': function(test) {
+  'correctly accepts values for a chart using barGraph': function(test) {
     var oneForteenth = 100 / 14,
       correctInput = [];
 
