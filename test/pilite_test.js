@@ -34,13 +34,13 @@ exports['test'] = {
     test.done();
   },
   'correctly accepts 126 character string in ones and zeros to represent each LED state (on or off)': function(test) {
-    var correct_command = '000000000000000000000111000011111110011111110111111111111101111111101111011000110011000110000000000000000000000000000000000000',
-      expected = "$$$F" + correct_command + "\r"
+    var correctCommand = '000000000000000000000111000011111110011111110111111111111101111111101111011000110011000110000000000000000000000000000000000000',
+      expected = "$$$F" + correctCommand + "\r"
     test.expect(4);
     test.throws(function() {pilite.frameBuffer('1')}, Error, 'Should only allow a string of exactly 126 characters');
-    test.throws(function() {pilite.frameBuffer(correct_command + '1')}, Error, 'Should only allow a string of exactly 126 characters');
-    test.throws(function() {pilite.frameBuffer(correct_command.pop().push('a'))}, Error, 'Should only allow zeros and ones');
-    test.equal(pilite.frameBuffer(correct_command), expected, 'should be ' + expected + '.');
+    test.throws(function() {pilite.frameBuffer(correctCommand + '1')}, Error, 'Should only allow a string of exactly 126 characters');
+    test.throws(function() {pilite.frameBuffer(correctCommand.pop().push('a'))}, Error, 'Should only allow zeros and ones');
+    test.equal(pilite.frameBuffer(correctCommand), expected, 'should be ' + expected + '.');
     test.done();
   },
   'correctly accepts values for a bar graph': function(test) {
@@ -57,12 +57,22 @@ exports['test'] = {
     test.throws(function() {pilite.barGraph(1, -1)}, Error, 'Should only allow percentages 0-100');
     test.throws(function() {pilite.barGraph(1, 101)}, Error, 'Should only allow percentages 0-100');
     test.done();
-  }/*,
-  'correctly returns string for setting pilite speed': function(test) {
-    test.expect(1);
-    test.equal(pilite.chart(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
-    test.done();
   },
+  'correctly accepts values for a horizontal chart': function(test) {
+    var oneForteenth = 100 / 14,
+      correctInput = [];
+
+    for (var i = 1; i <= 14; i++) {
+      correctInput.push(Math.round(100 - (oneForteenth * i)));
+    };
+
+    test.expect(3);
+    test.doesNotThrow(function() {pilite.chart(correctInput)});
+    test.throws(function() {pilite.chart(50)}, Error, 'Array should be provided');
+    test.throws(function() {pilite.chart(correctInput.push(0))}, Error, 'Array of too many elements provided');
+    // Maybe ensure the function returns the commands? (Enhancement)
+    test.done();
+  }/*,
   'correctly returns string for setting pilite speed': function(test) {
     test.expect(1);
     test.equal(pilite.vuMeter(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
