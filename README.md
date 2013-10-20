@@ -23,7 +23,22 @@ pilite.connect(function() {
 _(Coming soon)_
 
 ## Examples
-_(Coming soon)_
+```javascript
+var pilite = require('pilite');
+
+pilite.connect(function() {
+	pilite.clear();
+	
+	// Toggles a random pixel twice a second.
+    var timer = setInterval(function() {
+        column = Math.floor(Math.random() * 15),
+        row = Math.floor(Math.random() * 10);
+
+        pilite.pixel(column, row, "TOGGLE");
+    }, 500);
+}
+
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

@@ -84,12 +84,21 @@ exports['test'] = {
     test.throws(function() {pilite.vuMeter(1, -1, options)}, Error, 'Should only allow percentages 0-100');
     test.throws(function() {pilite.vuMeter(1, 101, options)}, Error, 'Should only allow percentages 0-100');
     test.done();
-  }/*,
-  'correctly returns string for setting pilite speed': function(test) {
-    test.expect(1);
-    test.equal(pilite.pixel(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
-    test.done();
   },
+  "correctly returns string for setting pixel's state": function(test) {
+    test.expect(10);
+    test.equal(pilite.pixel(1, 1, 'ON', options), "$$$P1,1,ON\r", 'should be $$$P1,1,ON.');
+    test.equal(pilite.pixel(14, 1, 'TOGGLE', options), "$$$P14,1,TOGGLE\r", 'should be P14,1,TOGGLE.');
+    test.equal(pilite.pixel(1, 9, 'OFF', options), "$$$P1,9,OFF\r", 'should be $$$P1,9,OFF.');
+    test.throws(function() {pilite.pixel(0, 1, 'ON', options)}, Error, 'Should only allow columns 1-14');
+    test.throws(function() {pilite.pixel(15, 1, 'ON', options)}, Error, 'Should only allow columns 1-14');
+    test.throws(function() {pilite.pixel(1, 0, 'ON', options)}, Error, 'Should only allow rows 1-7');
+    test.throws(function() {pilite.pixel(1, 10, 'ON', options)}, Error, 'Should only allow rows 1-7');
+    test.throws(function() {pilite.pixel(1, 1, 'DAVE', options)}, Error, 'Should only allow ON, OFF and TOGGLE');
+    test.throws(function() {pilite.pixel(1, 1, 1, options)}, Error, 'Should only allow ON, OFF and TOGGLE');
+    test.throws(function() {pilite.pixel(1, 1, true, options)}, Error, 'Should only allow ON, OFF and TOGGLE');
+    test.done();
+  }/*,
   'correctly returns string for setting pilite speed': function(test) {
     test.expect(1);
     test.equal(pilite.colBuffer(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
