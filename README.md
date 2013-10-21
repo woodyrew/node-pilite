@@ -13,7 +13,7 @@ See [Using the Pi-Lite pre-loaded software](http://openmicros.org/index.php/arti
 Install the module with: `npm install pilite`
 
 ```javascript
-var pilite = require('pilite');
+var pilite = require('pilite').PiLite;
 pilite.connect(function() {
 	// Run piLite commands
 }
@@ -24,7 +24,7 @@ _(Coming soon)_
 
 ## Examples
 ```javascript
-var pilite = require('pilite');
+var pilite = require('pilite').PiLite;
 
 pilite.connect(function() {
 	pilite.clear();

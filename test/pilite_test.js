@@ -98,16 +98,28 @@ exports['test'] = {
     test.throws(function() {pilite.pixel(1, 1, 1, options)}, Error, 'Should only allow ON, OFF and TOGGLE');
     test.throws(function() {pilite.pixel(1, 1, true, options)}, Error, 'Should only allow ON, OFF and TOGGLE');
     test.done();
-  }/*,
-  'correctly returns string for setting pilite speed': function(test) {
-    test.expect(1);
-    test.equal(pilite.colBuffer(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
+  },
+  'correctly returns a string to put all pixels in the same state': function(test) {
+    test.expect(2);
+    test.equal(pilite.all('ON', options), "$$$ALL,ON\r", 'should be $$$ALL,ON.');
+    test.equal(pilite.all('OFF', options), "$$$ALL,OFF\r", 'should be $$$ALL,OFF.');
     test.done();
   },
-  'correctly returns string for setting pilite speed': function(test) {
-    test.expect(1);
-    test.equal(pilite.randomPixel(50), "$$$SPEED50\r", 'should be $$$SPEED50.');
+  'correctly returns string for scrolling the pixels across the display': function(test) {
+    test.expect(7);
+    test.equal(pilite.scroll(1), "$$$SCROLL1\r", 'should be $$$SCROLL1.');
+    test.equal(pilite.scroll(14), "$$$SCROLL14\r", 'should be $$$SCROLL14.');
+    test.equal(pilite.scroll(-1), "$$$SCROLL-1\r", 'should be $$$SCROLL-1.');
+    test.equal(pilite.scroll(-14), "$$$SCROLL-14\r", 'should be $$$SCROLL-14.');
+    test.throws(function() {pilite.scroll(0, options)}, Error, 'Should only allow columns -14 to 14 but not zero');
+    test.throws(function() {pilite.scroll(-15, options)}, Error, 'Should only allow columns -14 to 14 but not zero');
+    test.throws(function() {pilite.scroll(15, options)}, Error, 'Should only allow columns -14 to 14 but not zero');
     test.done();
-  }*/
+  },
+  'correctly returns string for a single character to be displayed': function(test) {
+    test.expect(1);
+    test.equal(pilite.text(1, 1, 'H', options), "$$$T1,1,H\r", 'should be $$$T1,1,H.');
+    test.done();
+  }
 
 };
