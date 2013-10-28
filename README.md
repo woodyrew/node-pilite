@@ -47,5 +47,5 @@ Fabrizio Codello's [Example Gist](https://gist.github.com/Fabryz/6189177) provid
 0.1.0 - First stable release
 
 ## License
-Copyright (c) 2013 Andrew Goodricke  
+Copyright (c) 2013 Woody Goodricke  
 Licensed under the MIT license.
