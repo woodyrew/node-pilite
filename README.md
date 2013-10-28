@@ -19,9 +19,6 @@ pilite.connect(function() {
 }
 ```
 
-## Documentation
-_(Coming soon)_
-
 ## Examples
 ```javascript
 var pilite = require('pilite').PiLite;
@@ -47,7 +44,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 Fabrizio Codello's [Example Gist](https://gist.github.com/Fabryz/6189177) provided the basis for this module.
 
 ## Release History
-_(Nothing yet)_
+0.1.0 - First stable release
 
 ## License
 Copyright (c) 2013 Andrew Goodricke  
