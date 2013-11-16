@@ -10,6 +10,8 @@ It's a credit card sized pcb that snugly fits on top of a [Raspberry Pi](http://
 See [Using the Pi-Lite pre-loaded software](http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/280#Using the Pi-Lite pre-loaded software) for the commands that are used with this module.
 
 ## Getting Started
+Not got node installed on your Pi?  Check out the [install instructions for the Raspberry Pi](https://github.com/voodootikigod/node-serialport#raspberry-pi-linux) - you don't need to npm install serial as it's included in this module.
+
 Install the module with: `npm install pilite`
 
 ```javascript
@@ -44,7 +46,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 Fabrizio Codello's [Example Gist](https://gist.github.com/Fabryz/6189177) provided the basis for this module.
 
 ## Release History
-0.1.0 - First stable release
+- 0.1.1 - pilite-padawan
+- 0.1.0 - First stable release
 
 ## License
 Copyright (c) 2013 Woody Goodricke  
