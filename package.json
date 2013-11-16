@@ -1,7 +1,7 @@
 {
   "name": "pilite",
   "description": "PiLite API module for programming in node.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/woodyrew/node-pilite",
   "author": {
     "name": "Andrew Goodricke",
