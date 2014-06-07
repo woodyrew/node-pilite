@@ -30,12 +30,12 @@ pilite.connect(function() {
 	
 	// Toggles a random pixel twice a second.
     var timer = setInterval(function() {
-        column = Math.floor(Math.random() * 15),
-        row = Math.floor(Math.random() * 10);
+        column = 1 + Math.floor(Math.random() * 14),
+        row = 1 + Math.floor(Math.random() * 9);
 
         pilite.pixel(column, row, "TOGGLE");
     }, 500);
-}
+});
 
 ```
 
