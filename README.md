@@ -1,6 +1,8 @@
 # pilite
 
-PiLite API module for programming in node.js
+PiLite API module for programming in node.js.
+
+The API mostly mirrors the functionality provided by the serial communications but with handy methods and value validations.  The source code isn't complicated and will help you better understand how it works.
 
 ## What's a piLite?
 It's a credit card sized pcb that snugly fits on top of a [Raspberry Pi](http://www.raspberrypi.org/faqs).
@@ -21,7 +23,7 @@ pilite.connect(function() {
 }
 ```
 
-## Examples
+## Example
 ```javascript
 var pilite = require('pilite').PiLite;
 
@@ -36,8 +38,46 @@ pilite.connect(function() {
         pilite.pixel(column, row, "TOGGLE");
     }, 500);
 });
-
 ```
+
+## API methods
+Please read the source code to get a better understanding of each of these methods, what's expected in the parameters is documented there.  The unit tests are also useful to this end.
+
+### `setSpeed(value, options)`
+Set scrolling delay in ms 1 is scrolling very fast, 1000 is scrolling very slow. Default speed is 80.
+
+### `frameBuffer(value, options)`
+Sets a frame instantly in one go.  This is the most efficient method of updating the state of the PiLite if you want to do animations or multiple state changes at once without a bit of lag.
+
+Using a 126 character string in ones and zeros to represent each LED state (on or off)
+
+### `barGraph(column, value, options)`
+Sets a column to a percentage
+
+### `chart(data, options)`
+Create graph from an array (max 14 columns)
+
+### `vuMeter(row, value, options)`
+vuMeter - Horizontal bar graph
+
+### `pixel(column, row, action, options)`
+Set a pixel's state
+
+### `all(value, options)`
+Set all the pixels on or off
+
+### 'clear(options)'
+Turns all pixels off - Alias to ALL,OFF
+    
+### 'scroll(value, options)'
+
+Scroll value columns left (+) or right (-)
+
+### `text(column, row, character, options)`
+Display character at location x,y.
+
+### `write(data)`
+Writes commands to the serial to instruct the Pi Lite.  You can use this to pass text to scroll.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
