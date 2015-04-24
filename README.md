@@ -12,6 +12,8 @@ It's a credit card sized pcb that snugly fits on top of a [Raspberry Pi](http://
 See [Using the Pi-Lite pre-loaded software](http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/280#Using the Pi-Lite pre-loaded software) for the commands that are used with this module.
 
 ## Getting Started
+First of all, run through the [piLite setup instructions](http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/283-setting-up-my-raspberry-pi) **before** plugging it in
+
 Not got node installed on your Pi?  Check out the [install instructions for the Raspberry Pi](https://github.com/voodootikigod/node-serialport#raspberry-pi-linux) - you don't need to npm install serial as it's included in this module.
 
 Install the module with: `npm install pilite`
