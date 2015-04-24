@@ -37,6 +37,6 @@
     "piLite"
   ],
   "dependencies": {
-    "serialport": "~1.2.0"
+    "serialport": "~1.6.0"
   }
 }
