@@ -1,6 +1,6 @@
 'use strict';
 
-var pilite = require('../lib/pilite.js').PiLite;
+var pilite = require('../lib/');
 
 /*
   ======== A Handy Little Nodeunit Reference ========

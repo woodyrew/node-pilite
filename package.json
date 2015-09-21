@@ -25,11 +25,15 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
+    "lint": "eslint .",
+    "test": "grunt nodeunit",
+    "dev-test": "nodemon --exec 'npm test'"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
+    "chai": "^3.2.0",
+    "eslint": "^1.3.1",
+    "mocha": "^2.3.2",
+	"grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-watch": "~0.4.0",
     "grunt": "~0.4.1"
   },
