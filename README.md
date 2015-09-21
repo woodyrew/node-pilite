@@ -19,7 +19,7 @@ Not got node installed on your Pi?  Check out the [install instructions for the 
 Install the module with: `npm install pilite`
 
 ```javascript
-var pilite = require('pilite').PiLite;
+var pilite = require('pilite');
 pilite.connect(function() {
 	// Run piLite commands
 }
@@ -27,7 +27,7 @@ pilite.connect(function() {
 
 ## Example
 ```javascript
-var pilite = require('pilite').PiLite;
+var pilite = require('pilite');
 
 pilite.connect(function() {
 	pilite.clear();
@@ -90,7 +90,8 @@ Fabrizio Codello's [Example Gist](https://gist.github.com/Fabryz/6189177) provid
 ## Release History
 - 0.1.1 - pilite-padawan
 - 0.1.0 - First stable release
+- 1.0.0 - Fixed API and export the Pilite module directly
 
 ## License
-Copyright (c) 2013 Woody Goodricke  
+Copyright (c) 2013 Andrew Goodricke  
 Licensed under the MIT license.
